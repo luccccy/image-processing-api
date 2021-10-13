@@ -2,7 +2,7 @@ import { promises as fsPromises } from 'fs';
 import express from 'express';
 import sharp from 'sharp';
 
-const imageProcessing = (
+export const imageProcessing = (
   req: express.Request,
   res: express.Response
 ): Promise<sharp.OutputInfo | Error> => {
@@ -45,11 +45,11 @@ const imageProcessing = (
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function readImage(filePath: string): Promise<Buffer | Error> {
+export function readImage(filePath: string): Promise<Buffer | Error> {
   return fsPromises.readFile(filePath);
 }
 
-function resizeImage(
+export function resizeImage(
   buffer: Buffer,
   width: number,
   height: number,
@@ -64,5 +64,3 @@ function resizeImage(
       });
   });
 }
-
-export default imageProcessing;

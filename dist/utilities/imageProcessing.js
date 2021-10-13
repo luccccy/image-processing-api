@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resizeImage = exports.readImage = exports.imageProcessing = void 0;
 var fs_1 = require("fs");
 var sharp_1 = __importDefault(require("sharp"));
 var imageProcessing = function (req, res) {
@@ -41,10 +42,12 @@ var imageProcessing = function (req, res) {
         });
     });
 };
+exports.imageProcessing = imageProcessing;
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function readImage(filePath) {
     return fs_1.promises.readFile(filePath);
 }
+exports.readImage = readImage;
 function resizeImage(buffer, width, height, savePath) {
     return new Promise(function (resolve, reject) {
         return (0, sharp_1.default)(buffer)
@@ -56,4 +59,4 @@ function resizeImage(buffer, width, height, savePath) {
         });
     });
 }
-exports.default = imageProcessing;
+exports.resizeImage = resizeImage;

@@ -1,32 +1,30 @@
 import app from '../index';
-import request from 'request';
+import supertest from 'supertest';
+import { response } from 'express';
 
-describe('GET/api/images', function() {
+describe('Test endpoint responses', () => {
+  let request: supertest.SuperTest<supertest.Test>;
+
   beforeEach(function() {
-    require('../index');
+    request = supertest(app);
   });
-});
 
-it('returns 404', function(done) {
-  request('http://localhost:3000/api/images/unknow', function(error, response) {
-    expect(response.statusCode).toBe(404);
+  it('returns 200', async done => {
+    const response = await request.get('/api/images');
+    expect(response.status).toBe(200);
     done();
   });
-});
 
-it('returns no such file', function(done) {
-  request('http://localhost:3000/api/images?filename=unknow', function(
-    error,
-    response,
-    html
-  ) {
-    expect(html).toBe('oops...No such file or directory!');
+  it('returns no such file', async done => {
+    const response = await request.get('/api/images?filename=unknow');
+    expect(response.text).toBe('oops...No such file or directory!');
     done();
   });
-});
 
-// it('returns image', function(done) {
-//   request('http://localhost:3000/api/images?filename=fjord', function(error, response, html) {
-//     expect(response).toBe('http://localhost:3000/api/images?filename=fjord');
-//   });
-// });
+  it('returns html file', done => {
+    request.get('/api/images?filename=fjord').then(response => {
+      expect(response.text).toBeDefined();
+      done();
+    });
+  });
+});

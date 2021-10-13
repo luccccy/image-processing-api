@@ -1,10 +1,8 @@
 import express from 'express';
-import imageProcessing from './utilities/imageProcessing';
-
-//import readImage from './utilities/readImage';
+import { imageProcessing } from './utilities/imageProcessing';
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.get('/api/images', (req, res) => {
   const filePath =

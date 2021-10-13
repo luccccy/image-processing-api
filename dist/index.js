@@ -4,10 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var imageProcessing_1 = __importDefault(require("./utilities/imageProcessing"));
-//import readImage from './utilities/readImage';
+var imageProcessing_1 = require("./utilities/imageProcessing");
 var app = (0, express_1.default)();
-var port = 3000;
+var port = 8080;
 app.get('/api/images', function (req, res) {
     var filePath = __dirname +
         '/thumb/' +
@@ -17,7 +16,7 @@ app.get('/api/images', function (req, res) {
         '*' +
         req.query.height +
         '_thumb.jpg';
-    (0, imageProcessing_1.default)(req, res).then(function (data) {
+    (0, imageProcessing_1.imageProcessing)(req, res).then(function (data) {
         if (data instanceof Error) {
             res.statusCode = 404;
             res.send(data);
