@@ -1,6 +1,6 @@
 # Image Processing API
 
-1. **condig this api, we need first run : $npm install;
+1. **To config this api, we need first run : $npm install;
 
 2. **Start the server:
  $npm run start
