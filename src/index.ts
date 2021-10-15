@@ -1,7 +1,7 @@
 import express from 'express';
 import { imageProcessing } from './utilities/imageProcessing';
 
-const app = express();
+const app: express.Application = express();
 const port = 8080;
 
 app.get('/api/images', (req, res) => {

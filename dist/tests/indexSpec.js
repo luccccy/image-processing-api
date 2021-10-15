@@ -79,10 +79,3 @@ describe('Test endpoint responses', function () {
         });
     });
 });
-//
-// it('returns 200', function(done) {
-//   request(base_url + '?filename=fjord', function(error, response) {
-//     expect(response.statusCode).toBe(200);
-//     done();
-//   });
-// });
